@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tri ân thầy cô 20/11</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #fff5f7, #fdf8e8);
+      font-family: "Segoe UI", sans-serif;
+      padding: 20px;
+    }
+    .card {
+      max-width: 520px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 14px 35px rgba(180, 60, 90, 0.12);
+      text-align: center;
+      border: 1px solid #ffe0e6;
+    }
+    .tag {
+      display: inline-block;
+      background: #ffe4ea;
+      color: #b81d4a;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      color: #8c1538;
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .teacher-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #d6336c;
+      margin-bottom: 18px;
+    }
+    .message {
+      color: #374151;
+      font-size: 16px;
+      line-height: 1.65;
+      margin-bottom: 24px;
+      min-height: 76px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    button:hover { transform: translateY(-1px); opacity: 0.95; }
+    .btn-primary { background: #d6336c; color: #fff; }
+    .btn-secondary { background: #f3f4f6; color: #1f2937; }
+    .footer {
+      margin-top: 22px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="tag">NGÀY NHÀ GIÁO VIỆT NAM 20/11</div>
+    <h1 id="title">Kính Tặng Thầy Cô</h1>
+    <div class="teacher-name" id="teacher">Cô [Tên Cô Chủ Nhiệm]</div>
+    <p class="message" id="message">
+      Nhân ngày 20/11, chúng em kính chúc cô luôn dồi dào sức khỏe, bình an và giữ mãi ngọn lửa nhiệt huyết với sự nghiệp trồng người.
+    </p>
+    <div class="actions">
+      <button class="btn-primary" onclick="nextWish()">Đổi lời chúc</button>
+      <button class="btn-secondary" onclick="celebrate()">Gửi hoa tri ân 🌸</button>
+    </div>
+    <div class="footer" id="sender">Tập thể lớp [Tên Lớp] • Năm học 2026 - 2027</div>
+  </div>
+
+  <script>
+    // 1. Sửa tên thầy cô và tên lớp tại đây
+    const TEACHER_NAME = "Cô [Tên Cô Chủ Nhiệm]";
+    const SENDER_INFO = "Tập thể lớp [Tên Lớp] • Năm học 2026 - 2027";
+
+    // 2. Thêm hoặc sửa danh sách lời chúc tại đây
+    const WISHES = [
+      "Nhân ngày 20/11, chúng em kính chúc cô luôn dồi dào sức khỏe, bình an và giữ mãi ngọn lửa nhiệt huyết với sự nghiệp trồng người.",
+      "Cảm ơn thầy/cô đã kiên nhẫn dìu dắt và truyền cảm hứng cho chúng em mỗi ngày đến lớp. Chúc thầy/cô một ngày 20/11 thật nhiều niềm vui!",
+      "Kính chúc thầy/cô luôn trẻ trung, hạnh phúc và gặt hái thêm nhiều thành công mới trên chặng đường giáo dục."
+    ];
+
+    let index = 0;
+    document.getElementById("teacher").textContent = TEACHER_NAME;
+    document.getElementById("sender").textContent = SENDER_INFO;
+    document.getElementById("message").textContent = WISHES[0];
+
+    function nextWish() {
+      index = (index + 1) % WISHES.length;
+      document.getElementById("message").textContent = WISHES[index];
+    }
+
+    function celebrate() {
+      const hearts = ["🌸", "🌷", "💐", "❤️", "✨"];
+      for (let i = 0; i < 18; i++) {
+        const span = document.createElement("span");
+        span.textContent = hearts[i % hearts.length];
+        span.style.position = "fixed";
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.top = "-24px";
+        span.style.fontSize = (18 + Math.random() * 14) + "px";
+        span.style.pointerEvents = "none";
+        span.style.transition = "transform 1.8s ease-out, opacity 1.8s ease-out";
+        document.body.appendChild(span);
+
+        requestAnimationFrame(() => {
+          span.style.transform = `translateY(${window.innerHeight + 60}px) rotate(${Math.random() * 360}deg)`;
+          span.style.opacity = "0";
+        });
+
+        setTimeout(() => span.remove(), 1900);
+      }
+    }
+  </script>
+</body>
+</html>
